@@ -69,7 +69,7 @@ return [
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
-            'host' => 'SVRISLCIX\SRVSQLISLCIX',
+            'host' => '10.1.0.20',
             'port' => '1433',
             'database' => 'ISLCIX',
             'username' => 'sqlrepli',

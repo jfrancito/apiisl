@@ -75,6 +75,10 @@ class DocumentoApiController extends Controller {
             $XML                                =   $request['XML'];
             $CDR                                =   $request['CDR'];
 
+            $ID_DIRECCION_PARTIDA               =   $request['ID_DIRECCION_PARTIDA'];
+            $ID_DIRECCION_LLEGADA               =   $request['ID_DIRECCION_LLEGADA'];
+            $CODIGO_DE_CARGA                    =   $request['CODIGO_DE_CARGA'];
+
 
 
 
@@ -139,7 +143,12 @@ class DocumentoApiController extends Controller {
 
                                                     @PDF = ?,
                                                     @XML = ?,
-                                                    @CDR = ?
+                                                    @CDR = ?,
+
+                                                    @ID_DIRECCION_PARTIDA = ?,
+                                                    @ID_DIRECCION_LLEGADA = ?,
+                                                    @CODIGO_DE_CARGA = ?
+
 
                                                     ');
 
@@ -203,6 +212,10 @@ class DocumentoApiController extends Controller {
             $stmt->bindParam(52, $XML  ,PDO::PARAM_STR);
             $stmt->bindParam(53, $CDR  ,PDO::PARAM_STR);
 
+
+            $stmt->bindParam(54, $ID_DIRECCION_PARTIDA  ,PDO::PARAM_STR);
+            $stmt->bindParam(55, $ID_DIRECCION_LLEGADA  ,PDO::PARAM_STR);
+            $stmt->bindParam(56, $CODIGO_DE_CARGA  ,PDO::PARAM_STR);
 
             $stmt->execute();
 
