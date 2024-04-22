@@ -15,6 +15,9 @@ use Illuminate\Http\Request;
 
 Route::get('/lista-viaje-dni-fechas/{dni}/{fechainicio}/{fechafin}', 'DocumentoApiController@actionListadoViaje01')->middleware('basicAuth');
 Route::get('/lista-viaje-fechas/{fechainicio}/{fechafin}', 'DocumentoApiController@actionListadoViaje02')->middleware('basicAuth');
+Route::get('/lista-direcciones-xruc/{ruc}', 'DocumentoApiController@actionListadoDirecciones')->middleware('basicAuth');
 
+
+Route::post('/registro-guia-greta', 'DocumentoApiController@actionRegistroGuiaGreta')->middleware('basicAuth');
 
 
