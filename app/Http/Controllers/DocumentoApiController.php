@@ -586,7 +586,6 @@ class DocumentoApiController extends Controller {
                 $RUC_REMITENTE                      =   $request['RUC_REMITENTE'];
                 $NOMBRE_REMITENTE                   =   $request['NOMBRE_REMITENTE'];
                 $RUC_DESTINATARIO                   =   $request['RUC_DESTINATARIO'];
-
                 $NOMBRE_DESTINATARIO                =   $request['NOMBRE_DESTINATARIO'];
                 $RUC_TRANSPORTISTA                  =   $request['RUC_TRANSPORTISTA'];
                 $NOMBRE_TRANSPORTISTA               =   $request['NOMBRE_TRANSPORTISTA'];
@@ -597,7 +596,6 @@ class DocumentoApiController extends Controller {
                 $UNIDAD_MEDIDA                      =   $request['UNIDAD_MEDIDA'];
                 $PESO                               =   $request['PESO'];
                 $RUC_SUBCONTRATA                    =   $request['RUC_SUBCONTRATA'];
-
                 $NOMBRE_SUBCONTRATA                 =   $request['NOMBRE_SUBCONTRATA'];
                 $DNI_CONDUCTOR_PRINCIPAL            =   $request['DNI_CONDUCTOR_PRINCIPAL'];
                 $NOMBRE_CONDUCTOR_PRINCIPAL         =   $request['NOMBRE_CONDUCTOR_PRINCIPAL'];
@@ -605,20 +603,16 @@ class DocumentoApiController extends Controller {
                 $DNI_CONDUCTOR_SECUNDARIO_1         =   $request['DNI_CONDUCTOR_SECUNDARIO_1'];
                 $NOMBRE_CONDUCTOR_SECUNDARIO_1      =   $request['NOMBRE_CONDUCTOR_SECUNDARIO_1'];
                 $LICENCIA_CONDUCTOR_SECUNDARIO_1    =   $request['LICENCIA_CONDUCTOR_SECUNDARIO_1'];
-
                 $PLACA_PRINCIPAL                    =   $request['PLACA_PRINCIPAL'];
                 $TUCE_PRINCIPAL                     =   $request['TUCE_PRINCIPAL'];
                 $PLACA_SECUNDARIA                   =   $request['PLACA_SECUNDARIA'];
                 $TUCE_SECUNDARIA                    =   $request['TUCE_SECUNDARIA'];
-
                 $NRO_AUTORIZACION_MTC               =   $request['NRO_AUTORIZACION_MTC'];
                 $RUC_TERCERO                        =   $request['RUC_TERCERO'];
                 $NOMBRE_TERCERO                     =   $request['NOMBRE_TERCERO'];
                 $OBSERVACIONES                      =   $request['OBSERVACIONES'];
-
                 $FECHA_HORA_ENVIO                   =   $request['FECHA_HORA_ENVIO'];
                 $ESTADO_SUNAT                       =   $request['ESTADO_SUNAT'];
-
                 $RPTA_SUNAT                         =   $request['RPTA_SUNAT'];
 
 
@@ -742,7 +736,11 @@ class DocumentoApiController extends Controller {
 
                 Insertar_Mensaje_Whatsapp:
 
-                $MSJ .=   'ID: '. $ID;
+                $MSJ .=   'FECHA_HORA_ENVIO : ' . $FECHA_HORA_ENVIO;
+                $MSJ .=   '%0D%0AESTADO_SUNAT : ' . $ESTADO_SUNAT;
+                $MSJ .=   '%0D%0ARPTA_SUNAT : ' . $RPTA_SUNAT;
+
+                $MSJ .=   '%0D%0AID: '. $ID;
                 $MSJ .=   '%0D%0AVIAJE : ' . $VIAJE;
                 $MSJ .=   '%0D%0ASERIE : ' . $SERIE;
                 $MSJ .=   '%0D%0ANUMERO : ' . $NUMERO;
@@ -781,10 +779,6 @@ class DocumentoApiController extends Controller {
                 $MSJ .=   '%0D%0ARUC_TERCERO : ' . $RUC_TERCERO;
                 $MSJ .=   '%0D%0ANOMBRE_TERCERO : ' . $NOMBRE_TERCERO;
                 $MSJ .=   '%0D%0AOBSERVACIONES : ' . $OBSERVACIONES;
-                $MSJ .=   '%0D%0AFECHA_HORA_ENVIO : ' . $FECHA_HORA_ENVIO;
-                $MSJ .=   '%0D%0AESTADO_SUNAT : ' . $ESTADO_SUNAT;
-
-                $MSJ .=   '%0D%0ARPTA_SUNAT : ' . $RPTA_SUNAT;
             }
 
             $NombreRemitente                    =   'GRETA';
