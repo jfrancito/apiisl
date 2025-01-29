@@ -4,9 +4,9 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Console\Commands\ApiProducto;
-use App\Console\Commands\CrearPdfSap;
-use App\Console\Commands\LogErrores;
+// use App\Console\Commands\ApiProducto;
+// use App\Console\Commands\CrearPdfSap;
+// use App\Console\Commands\LogErrores;
 
 
 class Kernel extends ConsoleKernel {
@@ -16,9 +16,9 @@ class Kernel extends ConsoleKernel {
      * @var array
      */
     protected $commands = [
-            ApiProducto::class,
-            CrearPdfSap::class,
-            LogErrores::class            
+            // ApiProducto::class,
+            // CrearPdfSap::class,
+            // LogErrores::class            
     ];
 
     /**
@@ -30,15 +30,15 @@ class Kernel extends ConsoleKernel {
     protected function schedule(Schedule $schedule) {
         /************************PRODUCTO*************************/
         //enviar a inforest productos
-        $schedule->command('api:productonuevo')->everyMinute();//ACTIVAR
+        // $schedule->command('api:productonuevo')->everyMinute();//ACTIVAR
 
-        /*******************GENERR PDF*****************/
-        $schedule->command('crear:pdf')->everyMinute();//ACTIVAR
+        // /*******************GENERR PDF*****************/
+        // $schedule->command('crear:pdf')->everyMinute();//ACTIVAR
 
-        /*******************ENVIAR LOG MENSAJE*****************/
-         $schedule->command('log:error')->dailyAt('15:00');
-         $schedule->command('log:error')->dailyAt('09:00');
-        //$schedule->command('log:error')->everyMinute();//ACTIVAR
+        // /*******************ENVIAR LOG MENSAJE*****************/
+        //  $schedule->command('log:error')->dailyAt('15:00');
+        //  $schedule->command('log:error')->dailyAt('09:00');
+        // //$schedule->command('log:error')->everyMinute();//ACTIVAR
 
 
     }

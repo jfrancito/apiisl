@@ -785,7 +785,7 @@ class DocumentoApiController extends Controller {
             $NumeroContacto                     =   '51979628019';
             $NombreContacto                     =   'Alertas Guias Greta';
             $Mensaje                            =   $MSJ;
-            $IndArchivo                         =   1;
+            $IndArchivo                         =   0;
             $RutaArchivo                        =   '';
             $SizeArchivo                        =   0;
             $NombreProyecto                     =   'ALERTAS-GUIAS-GRETA';
