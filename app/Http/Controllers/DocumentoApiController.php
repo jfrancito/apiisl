@@ -95,7 +95,18 @@ class DocumentoApiController extends Controller {
             $CODIGO_DE_CARGA                    =   $request['CODIGO_DE_CARGA'];
 
 
-
+            // if(ltrim(rtrim($COD_QR))==''){
+            //     $array_respuesta    =   array(
+            //         "codigo"                    => '0000',
+            //         "mensaje"                   => 'EL CODIGO QR ESTA VACIO'
+            //     );
+            //     $responsecode = 401;
+            //     $header = array (
+            //         'Content-Type'  => 'application/json; charset=UTF-8',
+            //         'charset'       => 'utf-8'
+            //     );
+            //     return response()->json($array_respuesta, $responsecode, $header, JSON_UNESCAPED_UNICODE);
+            // }
 
             $stmt                               =   DB::connection('sqlsrv')->getPdo()->prepare('SET NOCOUNT ON;EXEC OPE.INSERTAR_GUIAS_GRETA 
 
