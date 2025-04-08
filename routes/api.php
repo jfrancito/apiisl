@@ -22,4 +22,6 @@ Route::post('/registro-error-guia', 'DocumentoApiController@actionRegistroErrorG
 
 Route::post('/registro-guia-greta', 'DocumentoApiController@actionRegistroGuiaGreta')->middleware('basicAuth');
 
+Route::post('/prueba-api/{dni}', 'ApiTelemetriaController@actionPruebaApi')->middleware('clienteTelAuth');
+
 

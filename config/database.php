@@ -80,6 +80,19 @@ return [
 
         ],
 
+        'sqlsrvtel' => [
+            'driver' => 'sqlsrv',
+            'host' => '10.1.0.20',
+            'port' => '1433',
+            'database' => 'ISLTEL',
+            'username' => 'sqlrepli',
+            'password' => 'sqlrepli',
+            'charset' => 'utf8',
+            'prefix' => '',
+    
+
+        ],
+
     ],
 
     /*
