@@ -25,5 +25,6 @@ Route::post('/registro-guia-greta', 'DocumentoApiController@actionRegistroGuiaGr
 Route::post('/prueba-api/{dni}', 'ApiTelemetriaController@actionPruebaApi')->middleware('clienteTelAuth');
 Route::post('/registro-datos-gps', 'ApiTelemetriaController@actionRegistroDatosGpsTrackLog')->middleware('clienteTelAuth');
 Route::post('/registro-datos-gps-masivo', 'ApiTelemetriaController@actionRegistroDatosGpsTrackLogMasivo')->middleware('clienteTelAuth');
+Route::post('/registro-datos-gps-live', 'ApiTelemetriaController@actionRegistroDatosGpsTrackLogLive')->middleware('clienteTelAuth');
 
 
