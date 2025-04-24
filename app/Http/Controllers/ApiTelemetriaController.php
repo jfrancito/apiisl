@@ -36,7 +36,8 @@ class ApiTelemetriaController extends Controller
 		try{ 
 			$mensajeerror = '';
 			$oeDatos    =   $request->all();
-			
+
+
 			$responsecode = 200;
 			$header = array (
 				'Content-Type'  => 'application/json; charset=UTF-8',
@@ -62,7 +63,11 @@ class ApiTelemetriaController extends Controller
 			$Latitud             =  $oeDatos['latitud'];
 			$Longitud            =  $oeDatos['longitud'];
 			$Canbus              =  $oeDatos['canbus'];
-			$Odometro            =  ((float)$oeDatos['odometro'])/1000;
+			// $Odometro            =  (float)$oeDatos['odometro'];
+			// $Odometro            =  $Odometro/1000;
+			// $Odometro = number_format(((float)$oeDatos['odometro'] / 1000), 4, '.', '');
+			// Log::info("Datos Json: " . $Odometro);
+			
 			$Kilometraje         =  $oeDatos['kilometraje'];
 			$Ubicacion           =  $oeDatos['ubicacion'];
 	
@@ -196,6 +201,7 @@ class ApiTelemetriaController extends Controller
 				$Longitud            =  $oeRegistro['longitud'];
 				$Canbus              =  $oeRegistro['canbus'];
 				$Odometro            =  (isset($oeRegistro['odometro']))?(float)($oeRegistro['odometro']):0.0;
+				$Odometro            =  (float)($Odometro/1000);
 				$Kilometraje         =  (isset($oeRegistro['kilometraje']))?(float)($oeRegistro['kilometraje']):0.0;
 				$Ubicacion           =  $oeRegistro['ubicacion'];
 				$TipoCombustible     =  '';//(isset($oeRegistro['tipocombustible']))?$oeRegistro['tipocombustible']:'';
