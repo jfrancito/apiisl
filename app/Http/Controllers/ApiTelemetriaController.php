@@ -331,7 +331,7 @@ class ApiTelemetriaController extends Controller
 	public function actionRegistroDatosGpsTrackLogLive(Request $request) {
 
 		header('Content-Type: application/json; charset=utf-8');
-		
+
 		try{ 
 
 			$mensajeerror 	= 	'';
@@ -343,6 +343,7 @@ class ApiTelemetriaController extends Controller
 				'charset'       => 'utf-8'
 			);
 			$rpta = [];
+			// return $request->all();
 			// $oeDatosRq    =   $request->all()['items'];
 			// $oelDatos   =   $oeDatosRq['items'];
 			$oelDatos    	=   $request->all()['items'];
@@ -357,7 +358,7 @@ class ApiTelemetriaController extends Controller
 				$Placa               =  $oeRegistro['placa'];
 				$Fecha               =  $oeRegistro['fecha'];
 				$Hora                =  $oeRegistro['hora'];
-				$FechaRegistro       =  date('Y-m-j H:i:s',strtotime(trim($oeRegistro['fecha']).' '.trim($oeRegistro['hora'])));
+				$FechaRegistro       =  date('Y-d-m H:i:s',strtotime(trim($oeRegistro['fecha']).' '.trim($oeRegistro['hora'])));
 				$Calle               =  $oeRegistro['calle'];
 				$Locaidad            =  $oeRegistro['locaidad'];
 				$Distrito            =  $oeRegistro['distrito'];
@@ -369,68 +370,69 @@ class ApiTelemetriaController extends Controller
 				$Longitud            =  $oeRegistro['longitud'];
 				$Canbus              =  $oeRegistro['canbus'];
 				$Odometro            =  (isset($oeRegistro['odometro']))?(float)($oeRegistro['odometro']):0.0;
+				$Odometro            =  (float)($Odometro/1000);
 				$Kilometraje         =  (isset($oeRegistro['kilometraje']))?(float)($oeRegistro['kilometraje']):0.0;
 				$Ubicacion           =  $oeRegistro['ubicacion'];
-				
 				$TipoCombustible     =  '';//(isset($oeRegistro['tipocombustible']))?$oeRegistro['tipocombustible']:'';
-				$ConsumoCombustible  =  0.0;//(isset($oeRegistro['consumocombustible']))?(float)($oeRegistro['consumocombustible']):0.0;
-				$NivelCombustible    =  0.0;//(isset($oeRegistro['nivelcombustible']))?(float)($oeRegistro['nivelcombustible']):0.0;
-				$RPM           		 =  0.0;//(isset($oeRegistro['rpm']))?(float)($oeRegistro['rpm']):0.0;
+				$ConsumoCombustible  = 	(float)$oeRegistro['combustible'];
+				$NivelCombustible    =  (float)$oeRegistro['nivelcombustible'];
+				$RPM           		 =  (float)$oeRegistro['rpm'];
+				$Horometro           =  (float)$oeRegistro['horometro'];
 				
-				$stmt              	 =   DB::connection('sqlsrvtel')->getPdo()->prepare('SET NOCOUNT ON;EXEC INSERTAR_DATOS_GPS_TRACKLOG_MASIVO 
-			                                	@IdProveedorGps  =   ?,
-												@IdGps           =   ?,
-												@IdPlaca         =   ?,
-												@Placa           =   ?,
-												@Fecha           =   ?,
-												@Hora            =   ?,
-												@FechaRegistro   =   ?,
-												@Calle           =   ?,
-												@Locaidad        =   ?,
-												@Distrito        =   ?,
-												@Pais            =   ?,
-												@Velocidad       =   ?,
-												@Brujula         =   ?,
-												@Evento          =   ?,
-												@Latitud         =   ?,
-												@Longitud        =   ?,
-												@Canbus          =   ?,
-												@Odometro        =   ?,
-												@Kilometraje     =   ?,
-												@Ubicacion       =   ?,
+				// return json_encode(compact('IdProveedorGps','IdGps','IdPlaca','Placa','Fecha','Hora','FechaRegistro','Calle','Locaidad','Distrito','Pais','Velocidad','Brujula','Evento','Latitud','Longitud','Canbus','Odometro','Kilometraje','Ubicacion','TipoCombustible','ConsumoCombustible','NivelCombustible','RPM'));
+				$stmt              	 =   DB::connection('sqlsrvtel')->getPdo()->prepare('SET NOCOUNT ON;EXEC INSERTAR_DATOS_GPS_TRACKLOG_MASIVO_LIVE 
+			                                	@IdProveedorGps  	=   ?,
+												@IdPlaca         	=   ?,
+												@Placa           	=   ?,
+												@Fecha           	=   ?,
+												@Hora            	=   ?,
+												@FechaRegistro   	=   ?,
+												@Calle           	=   ?,
+												@Locaidad        	=   ?,
+												@Distrito        	=   ?,
+												@Pais            	=   ?,
+												@Velocidad       	=   ?,
+												@Brujula         	=   ?,
+												@Evento          	=   ?,
+												@Latitud         	=   ?,
+												@Longitud        	=   ?,
+												@Canbus          	=   ?,
+												@Odometro        	=   ?,
+												@Kilometraje     	=   ?,
+												@Ubicacion       	=   ?,
 												@TipoCombustible    =   ?,
 												@ConsumoCombustible =   ?,
 												@NivelCombustible   =   ?,
-												@RPM       			=   ?
+												@RPM       			=   ?,
+												@Horometro  		=   ?
 			                                ');
 
 
 
 				$stmt->bindParam(1, $IdProveedorGps ,PDO::PARAM_STR);                   
-				$stmt->bindParam(2, $IdGps  ,PDO::PARAM_STR);
-				$stmt->bindParam(3, $IdPlaca  ,PDO::PARAM_STR);
-				$stmt->bindParam(4, $Placa  ,PDO::PARAM_STR);
-				$stmt->bindParam(5, $Fecha  ,PDO::PARAM_STR);
-				$stmt->bindParam(6, $Hora ,PDO::PARAM_STR);
-				$stmt->bindParam(7, $FechaRegistro  ,PDO::PARAM_STR);
-				$stmt->bindParam(8, $Calle  ,PDO::PARAM_STR);
-				$stmt->bindParam(9, $Locaidad  ,PDO::PARAM_STR);
-				$stmt->bindParam(10,$Distrito  ,PDO::PARAM_STR);
-				$stmt->bindParam(11, $Pais ,PDO::PARAM_STR);                   
-				$stmt->bindParam(12, $Velocidad  ,PDO::PARAM_STR);
-				$stmt->bindParam(13, $Brujula  ,PDO::PARAM_STR);
-				$stmt->bindParam(14, $Evento  ,PDO::PARAM_STR);
-				$stmt->bindParam(15, $Latitud  ,PDO::PARAM_STR);
-				$stmt->bindParam(16, $Longitud ,PDO::PARAM_STR);
-				$stmt->bindParam(17, $Canbus  ,PDO::PARAM_STR);
-				$stmt->bindParam(18, $Odometro  ,PDO::PARAM_STR);
-				$stmt->bindParam(19, $Kilometraje  ,PDO::PARAM_STR);
-				$stmt->bindParam(20, $Ubicacion  ,PDO::PARAM_STR);
-
-				$stmt->bindParam(21, $TipoCombustible  ,PDO::PARAM_STR);
-				$stmt->bindParam(22, $ConsumoCombustible  ,PDO::PARAM_STR);
-				$stmt->bindParam(23, $NivelCombustible  ,PDO::PARAM_STR);
-				$stmt->bindParam(24, $RPM  ,PDO::PARAM_STR);
+				$stmt->bindParam(2, $IdPlaca  ,PDO::PARAM_STR);
+				$stmt->bindParam(3, $Placa  ,PDO::PARAM_STR);
+				$stmt->bindParam(4, $Fecha  ,PDO::PARAM_STR);
+				$stmt->bindParam(5, $Hora  ,PDO::PARAM_STR);
+				$stmt->bindParam(6, $FechaRegistro ,PDO::PARAM_STR);
+				$stmt->bindParam(7, $Calle  ,PDO::PARAM_STR);
+				$stmt->bindParam(8, $Locaidad  ,PDO::PARAM_STR);
+				$stmt->bindParam(9, $Distrito  ,PDO::PARAM_STR);
+				$stmt->bindParam(10,$DPais  ,PDO::PARAM_STR);
+				$stmt->bindParam(11, $Velocidad ,PDO::PARAM_STR);                   
+				$stmt->bindParam(12, $Brujula  ,PDO::PARAM_STR);
+				$stmt->bindParam(13, $Evento  ,PDO::PARAM_STR);
+				$stmt->bindParam(14, $Latitud  ,PDO::PARAM_STR);
+				$stmt->bindParam(15, $Longitud  ,PDO::PARAM_STR);
+				$stmt->bindParam(16, $Canbus ,PDO::PARAM_STR);
+				$stmt->bindParam(17, $Odometro  ,PDO::PARAM_STR);
+				$stmt->bindParam(18, $Kilometraje  ,PDO::PARAM_STR);
+				$stmt->bindParam(19, $Ubicacion  ,PDO::PARAM_STR);
+				$stmt->bindParam(20, $TipoCombustible  ,PDO::PARAM_STR);
+				$stmt->bindParam(21, $ConsumoCombustible  ,PDO::PARAM_STR);
+				$stmt->bindParam(22, $NivelCombustible  ,PDO::PARAM_STR);
+				$stmt->bindParam(23, $RPM  ,PDO::PARAM_STR);
+				$stmt->bindParam(24, $Horometro  ,PDO::PARAM_STR);
 				$stmt->execute();
 
 				$resultado = $stmt->fetch(PDO::FETCH_ASSOC);
