@@ -353,7 +353,7 @@ class ApiTelemetriaController extends Controller
 			foreach ($oelDatos as $index => $oeRegistro) 
 			{
 				$IdProveedorGps     =   '1CH000000000001';
-				$IdGps               =  $oeRegistro['id'];
+				// $IdGps               =  $oeRegistro['id'];
 				$IdPlaca             =  $oeRegistro['idplaca'];
 				$Placa               =  $oeRegistro['placa'];
 				$Fecha               =  $oeRegistro['fecha'];
