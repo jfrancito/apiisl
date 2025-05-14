@@ -418,7 +418,7 @@ class ApiTelemetriaController extends Controller
 				$stmt->bindParam(7, $Calle  ,PDO::PARAM_STR);
 				$stmt->bindParam(8, $Locaidad  ,PDO::PARAM_STR);
 				$stmt->bindParam(9, $Distrito  ,PDO::PARAM_STR);
-				$stmt->bindParam(10,$DPais  ,PDO::PARAM_STR);
+				$stmt->bindParam(10,$Pais  ,PDO::PARAM_STR);
 				$stmt->bindParam(11, $Velocidad ,PDO::PARAM_STR);                   
 				$stmt->bindParam(12, $Brujula  ,PDO::PARAM_STR);
 				$stmt->bindParam(13, $Evento  ,PDO::PARAM_STR);
@@ -438,10 +438,11 @@ class ApiTelemetriaController extends Controller
 				$resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 				$mensaje = $resultado['mensaje'];
 				$error = $resultado['error'];
+				$IdError = $IdPlaca.'-'.strval(date('YmdHis',strtotime($Fecha.' '.$Hora)));
 				if((int)$error>0){
 					$mensajeerror = $mensaje;
 					// goto Error_InsercionRegistro;
-					$errors[] = ['id'=>$IdGps,'error'=>$error,'mensaje'=>$mensaje];
+					$errors[] = ['id'=>$IdError,'error'=>$error,'mensaje'=>$mensaje];
 					$contError++;
 				}
 			}
