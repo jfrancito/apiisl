@@ -7,6 +7,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 // use App\Console\Commands\ApiProducto;
 // use App\Console\Commands\CrearPdfSap;
 // use App\Console\Commands\LogErrores;
+use App\Console\Commands\CmdEnvioViajesTrackLog;
 
 
 class Kernel extends ConsoleKernel {
@@ -18,7 +19,8 @@ class Kernel extends ConsoleKernel {
     protected $commands = [
             // ApiProducto::class,
             // CrearPdfSap::class,
-            // LogErrores::class            
+            // LogErrores::class   
+            CmdEnvioViajesTrackLog::class
     ];
 
     /**
@@ -38,6 +40,8 @@ class Kernel extends ConsoleKernel {
         // /*******************ENVIAR LOG MENSAJE*****************/
         //  $schedule->command('log:error')->dailyAt('15:00');
         //  $schedule->command('log:error')->dailyAt('09:00');
+        // //$schedule->command('log:error')->everyMinute();//ACTIVAR
+        
         // //$schedule->command('log:error')->everyMinute();//ACTIVAR
 
 
